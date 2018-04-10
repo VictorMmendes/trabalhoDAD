@@ -9,8 +9,8 @@ $(document).ready(function(){
 
     $("#confirm").click(function()
     {
-        var tit = $('#tit').val();
-        var desc = $('#desc').val();
+        const tit = $('#tit').val();
+        const desc = $('#desc').val();
 
         arrayTarefas[id].titulo = tit;
         arrayTarefas[id].descricao = desc;
