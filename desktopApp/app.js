@@ -1,7 +1,8 @@
 const electron = require('electron');
-const { app, BrowserWindow, ipcMain } = electron;
+const { app, BrowserWindow, ipcMain, globalShortcut } = electron;
+const windowStateKeeper = require('electron-window-state');
 
-var mainWindow = null;
+let mainWindow;
 
 app.on('window-all-closed', function() {
   if (process.platform != 'darwin') {
@@ -10,17 +11,30 @@ app.on('window-all-closed', function() {
 });
 
 app.on('ready', function() {
-  mainWindow = new BrowserWindow({
-    width: 900,
-    height: 500,
-    'min-width': 900,
-    'min-height': 500,
-    'accept-first-mouse': true,
-    'title-bar-style': 'hidden',
-    frame: false
+  const mainWindowState = windowStateKeeper({
+      defaultWidth: 1000,
+     defaultHeight: 800
   });
 
+  mainWindow = new BrowserWindow({
+    width: mainWindowState.width,
+    height: mainWindowState.height,
+    x: mainWindowState.x,
+    y:  mainWindowState.y,
+    'min-width': 500,
+    'min-height': 400,
+    'accept-first-mouse': true,
+    'title-bar-style': 'hidden',
+    frame: false,
+    show: false
+  });
+
+  mainWindowState.manage(mainWindow);
   mainWindow.loadURL(`file://${__dirname}/html/index.html`);
+
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show();
+  });
 
   mainWindow.on('closed', function() {
     mainWindow = null;
@@ -41,4 +55,7 @@ app.on('ready', function() {
     mainWindow.minimize();
   });
 
+  globalShortcut.register('Control+N', () =>{
+      mainWindow.webContents.send('nova:tarefa');
+  });
 });
