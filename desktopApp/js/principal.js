@@ -1,13 +1,11 @@
-window.$ = window.jQuery = require(`${__dirname}/../node_modules/jquery/dist/jquery.js`);
-
 $(document).ready(function(){
     loadContent();
 
     $("input[type=checkbox]").on('change', function ()
     {
-        var check = $(this);
-        var dados = check.attr('name').split('_');
-        var label = "lb_" + dados[1];
+        const check = $(this);
+        const dados = check.attr('name').split('_');
+        const label = "lb_" + dados[1];
 
         if(check.prop('checked') == true)
         {
@@ -20,9 +18,9 @@ $(document).ready(function(){
     });
 
     $("input[type=checkbox]").each(function() {
-        var check = $(this);
-        var dados = check.attr('name').split('_');
-        var label = "lb_" + dados[1];
+        const check = $(this);
+        const dados = check.attr('name').split('_');
+        const label = "lb_" + dados[1];
 
         if($(this).val() == 0)
         {
@@ -35,8 +33,8 @@ $(document).ready(function(){
 
     $(".tarefasLista").on('click', function ()
     {
-        var check = $(this);
-        var dados = check.attr('name').split('_');
+        const check = $(this);
+        const dados = check.attr('name').split('_');
         id = dados[1];
 
         $('.pane-conteudo').load('formularioAlterar.html');
@@ -45,29 +43,31 @@ $(document).ready(function(){
 
 function loadContent()
 {
-	for(var i = 0; i < arrayTarefas.length; i++)
-	{
+  let i = 0;
+  for (tarefa of arrayTarefas) {
     	const table = document.querySelector('tbody');
     	const tr = document.createElement('tr');
     	const tdStatus = document.createElement('td');
-    	var tdTitulo = document.createElement('td')
+    	let tdTitulo = document.createElement('td')
         tdTitulo.setAttribute("name", "tr_" + i);
         tdTitulo.setAttribute("class", "tarefasLista");
 
-        var inputCk = document.createElement("INPUT");
+        let inputCk = document.createElement("INPUT");
         inputCk.setAttribute("type", "checkbox");
         inputCk.setAttribute("name", "ck_" + i);
-        inputCk.setAttribute("value", arrayTarefas[i].status + "");
+        inputCk.setAttribute("value", tarefa.status + "");
         tdStatus.appendChild(inputCk);
 
-        var inputLb = document.createElement("p");
+        let inputLb = document.createElement("p");
         inputLb.setAttribute("id", "lb_" + i);
-        const text = document.createTextNode(arrayTarefas[i].titulo);
+        const text = document.createTextNode(tarefa.titulo);
         inputLb.appendChild(text);
         tdTitulo.appendChild(inputLb);
 
         tr.appendChild(tdStatus);
         tr.appendChild(tdTitulo);
         table.appendChild(tr);
+
+        i++;
     }
 }
