@@ -4,7 +4,6 @@ const { ipcRenderer } = electron;
 window.$ = window.jQuery = require(`${__dirname}/../node_modules/jquery/dist/jquery.js`);
 
 var id;
-
 var arrayTarefas = [];
 arrayTarefas[0] = {
 	titulo:"Limpar a casa",
@@ -18,6 +17,10 @@ arrayTarefas[1] = {
 };
 
 $(document).ready(() => {
+
+	ipcRenderer.on('nova:tarefa', () => {
+	    $('.pane-conteudo').load('formulario.html');
+  });
 
 	$('.maximizar').click(() => ipcRenderer.send('janela:maximizar'));
 
@@ -39,5 +42,4 @@ $(document).ready(() => {
 	$('.btn-formulario').click(() => {
 		$('.pane-conteudo').load('formulario.html');
 	});
-
 });
