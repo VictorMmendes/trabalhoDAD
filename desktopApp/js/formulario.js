@@ -1,5 +1,3 @@
-window.$ = window.jQuery = require(`${__dirname}/../node_modules/jquery/dist/jquery.js`);
-
 $(document).ready(function(){
 
     $("#cancel").click(function(){
@@ -9,7 +7,7 @@ $(document).ready(function(){
     $("#confirm").click(function(){
 
         var tit = $('#tit').val();
-        var desc = $('#desc').val();
+        var desc = $('#desc_').val();
 
         var ind = arrayTarefas.length;
         arrayTarefas[ind] = {
