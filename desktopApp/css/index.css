@@ -1,0 +1,12 @@
+header.toolbar-header {
+	-webkit-app-region: drag;
+}
+
+th.right_option
+{
+	width: 8px;
+}
+
+form {
+	padding: 50px;
+}

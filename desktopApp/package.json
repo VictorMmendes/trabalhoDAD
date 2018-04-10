@@ -1,0 +1,16 @@
+{
+  "name": "aula-photon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "electron": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^1.8.4",
+    "jquery": "^3.3.1"
+  }
+}
