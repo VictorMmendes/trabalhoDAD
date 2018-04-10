@@ -1,5 +1,3 @@
-window.$ = window.jQuery = require(`${__dirname}/../node_modules/jquery/dist/jquery.js`);
-
 $(document).ready(function(){
 
     $("#tit").val(arrayTarefas[id].titulo);
@@ -20,11 +18,13 @@ $(document).ready(function(){
         $('.pane-conteudo').load('principal.html');
     });
 
+    $("#delete").click(function()
+    {
+        arrayTarefas.splice(id, 1);
+        $('.pane-conteudo').load('principal.html');
+    });
+
     $(".form-act").submit(function( event ) {
         event.preventDefault();
     });
 });
-
-function load(id) {
-  alert();
-}
