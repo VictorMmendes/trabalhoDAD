@@ -3,8 +3,8 @@ const { ipcRenderer } = electron;
 
 window.$ = window.jQuery = require(`${__dirname}/../node_modules/jquery/dist/jquery.js`);
 
-var id;
-var arrayTarefas = [];
+let id;
+let arrayTarefas = [];
 arrayTarefas[0] = {
 	titulo:"Limpar a casa",
 	descricao:"com detergente",
