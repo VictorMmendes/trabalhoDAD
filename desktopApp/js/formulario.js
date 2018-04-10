@@ -6,10 +6,10 @@ $(document).ready(function(){
 
     $("#confirm").click(function(){
 
-        var tit = $('#tit').val();
-        var desc = $('#desc_').val();
+        const tit = $('#tit').val();
+        const desc = $('#desc_').val();
 
-        var ind = arrayTarefas.length;
+        const ind = arrayTarefas.length;
         arrayTarefas[ind] = {
         	titulo:tit,
         	descricao:desc,
